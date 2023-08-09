@@ -5,7 +5,8 @@
   "workspaces": {
     "packages": [
       "packages/hardhat",
-      "packages/nextjs"
+      "packages/nextjs",
+      "packages/dashboard"
     ]
   },
   "scripts": {
@@ -27,7 +28,13 @@
     "postinstall": "husky install",
     "precommit": "lint-staged",
     "vercel": "yarn workspace @se-2/nextjs vercel",
-    "vercel:yolo": "yarn workspace @se-2/nextjs vercel:yolo"
+    "vercel:yolo": "yarn workspace @se-2/nextjs vercel:yolo",
+    "dash:dev": "yarn workspace @se-2/dashboard dev",
+    "dash:build": "yarn workspace @se-2/dashboard build",
+    "dash:start": "yarn workspace @se-2/dashboard start",
+    "dash:format": "yarn workspace @se-2/dashboard format",
+    "dash:format:write": "yarn workspace @se-2/dashboard format:write",
+    "dash:lint": "yarn workspace @se-2/dashboard lint"
   },
   "packageManager": "yarn@3.2.3",
   "devDependencies": {
