@@ -1,11 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Kumbh+Sans:wght@400;700&display=swap');
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-:root,
-[data-theme] {
-  background: hsl(var(--b2));
-}
 
 body {
   min-height: 100vh;
@@ -21,6 +17,13 @@ h4 {
 
 p {
   margin: 1rem 0;
+}
+
+.homeBT {
+  @apply
+  bg-bt rounded-dd hover:bg-bth cursor-pointer
+  text-l1 hover:text-l2 text-center w-fit mx-auto
+  px-5 py-2 font-kan text-xl md:text-2xl 
 }
 
 .btn {
