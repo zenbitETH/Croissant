@@ -2,8 +2,8 @@ import { useState } from "react";
 import { CopyIcon } from "./assets/CopyIcon";
 import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
+import { useScaffoldContractWrite } from "@/hooks/scaffold-eth";
 import { ArrowSmallRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 export const ContractInteraction = () => {
   const [visible, setVisible] = useState(true);

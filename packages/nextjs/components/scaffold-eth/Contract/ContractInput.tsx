@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import { AbiParameter } from "abitype";
 import {
   AddressInput,
   Bytes32Input,
@@ -7,7 +6,8 @@ import {
   InputBase,
   IntegerInput,
   IntegerVariant,
-} from "~~/components/scaffold-eth";
+} from "@/components/scaffold-eth";
+import { AbiParameter } from "abitype";
 
 type ContractInputProps = {
   setForm: Dispatch<SetStateAction<Record<string, any>>>;

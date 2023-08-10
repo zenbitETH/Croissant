@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import { Abi, AbiFunction } from "abitype";
-import { Address, TransactionReceipt } from "viem";
-import { useContractWrite, useNetwork, useWaitForTransaction } from "wagmi";
 import {
   ContractInput,
   IntegerInput,
@@ -10,9 +7,12 @@ import {
   getInitialFormState,
   getParsedContractFunctionArgs,
   getParsedError,
-} from "~~/components/scaffold-eth";
-import { useTransactor } from "~~/hooks/scaffold-eth";
-import { getTargetNetwork, notification } from "~~/utils/scaffold-eth";
+} from "@/components/scaffold-eth";
+import { useTransactor } from "@/hooks/scaffold-eth";
+import { getTargetNetwork, notification } from "@/utils/scaffold-eth";
+import { Abi, AbiFunction } from "abitype";
+import { Address, TransactionReceipt } from "viem";
+import { useContractWrite, useNetwork, useWaitForTransaction } from "wagmi";
 
 type WriteOnlyFunctionFormProps = {
   abiFunction: AbiFunction;

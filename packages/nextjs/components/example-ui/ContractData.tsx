@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import Marquee from "react-fast-marquee";
-import { useAccount } from "wagmi";
 import {
   useAnimationConfig,
   useScaffoldContract,
   useScaffoldContractRead,
   useScaffoldEventHistory,
   useScaffoldEventSubscriber,
-} from "~~/hooks/scaffold-eth";
+} from "@/hooks/scaffold-eth";
+import Marquee from "react-fast-marquee";
+import { useAccount } from "wagmi";
 
 const MARQUEE_PERIOD_IN_SEC = 5;
 

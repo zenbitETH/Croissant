@@ -1,5 +1,5 @@
+import { displayTxResult } from "@/components/scaffold-eth";
 import { TransactionReceipt } from "viem";
-import { displayTxResult } from "~~/components/scaffold-eth";
 
 export const TxReceipt = (
   txResult: string | number | bigint | Record<string, any> | TransactionReceipt | undefined,

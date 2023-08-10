@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useAccountBalance, useTransactor } from "@/hooks/scaffold-eth";
 import { createWalletClient, http, parseEther } from "viem";
 import { useAccount, useNetwork } from "wagmi";
 import { hardhat } from "wagmi/chains";
 import { BanknotesIcon } from "@heroicons/react/24/outline";
-import { useAccountBalance, useTransactor } from "~~/hooks/scaffold-eth";
 
 // Number of ETH faucet sends to an address
 const NUM_OF_ETH = "1";

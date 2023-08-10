@@ -2,11 +2,11 @@ import { useReducer } from "react";
 import { ContractReadMethods } from "./ContractReadMethods";
 import { ContractVariables } from "./ContractVariables";
 import { ContractWriteMethods } from "./ContractWriteMethods";
-import { Spinner } from "~~/components/Spinner";
-import { Address, Balance } from "~~/components/scaffold-eth";
-import { useDeployedContractInfo, useNetworkColor } from "~~/hooks/scaffold-eth";
-import { getTargetNetwork } from "~~/utils/scaffold-eth";
-import { ContractName } from "~~/utils/scaffold-eth/contract";
+import { Spinner } from "@/components/Spinner";
+import { Address, Balance } from "@/components/scaffold-eth";
+import { useDeployedContractInfo, useNetworkColor } from "@/hooks/scaffold-eth";
+import { getTargetNetwork } from "@/utils/scaffold-eth";
+import { ContractName } from "@/utils/scaffold-eth/contract";
 
 type ContractUIProps = {
   contractName: ContractName;

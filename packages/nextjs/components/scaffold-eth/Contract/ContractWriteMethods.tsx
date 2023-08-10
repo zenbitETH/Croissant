@@ -1,6 +1,6 @@
 import { WriteOnlyFunctionForm } from "./WriteOnlyFunctionForm";
+import { Contract, ContractName } from "@/utils/scaffold-eth/contract";
 import { Abi, AbiFunction } from "abitype";
-import { Contract, ContractName } from "~~/utils/scaffold-eth/contract";
 
 export const ContractWriteMethods = ({
   onChange,

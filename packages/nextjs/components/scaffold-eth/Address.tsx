@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { getBlockExplorerAddressLink, getTargetNetwork } from "@/utils/scaffold-eth";
 import Blockies from "react-blockies";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { isAddress } from "viem";
 import { useEnsAvatar, useEnsName } from "wagmi";
 import { hardhat } from "wagmi/chains";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
-import { getBlockExplorerAddressLink, getTargetNetwork } from "~~/utils/scaffold-eth";
 
 type TAddressProps = {
   address?: string;

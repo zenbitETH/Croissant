@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import scaffoldConfig from "@/scaffold.config";
+import { fetchPriceFromUniswap } from "@/utils/scaffold-eth";
 import { useInterval } from "usehooks-ts";
-import scaffoldConfig from "~~/scaffold.config";
-import { fetchPriceFromUniswap } from "~~/utils/scaffold-eth";
 
 const enablePolling = false;
 

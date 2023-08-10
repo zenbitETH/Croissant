@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
+import { useGlobalState } from "@/services/store/store";
+import { getTargetNetwork } from "@/utils/scaffold-eth";
 import { useBalance } from "wagmi";
-import { useGlobalState } from "~~/services/store/store";
-import { getTargetNetwork } from "~~/utils/scaffold-eth";
 
 export function useAccountBalance(address?: string) {
   const [isEthBalance, setIsEthBalance] = useState(true);

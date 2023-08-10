@@ -1,4 +1,5 @@
 import React from "react";
+import { Spinner } from "@/components/Spinner";
 import { toast } from "react-hot-toast";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import {
@@ -7,7 +8,6 @@ import {
   ExclamationTriangleIcon,
   InformationCircleIcon,
 } from "@heroicons/react/24/solid";
-import { Spinner } from "~~/components/Spinner";
 
 type TPositions = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
 

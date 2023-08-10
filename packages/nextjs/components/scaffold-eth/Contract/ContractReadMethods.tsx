@@ -1,6 +1,6 @@
 import { ReadOnlyFunctionForm } from "./ReadOnlyFunctionForm";
+import { Contract, ContractName } from "@/utils/scaffold-eth/contract";
 import { Abi, AbiFunction } from "abitype";
-import { Contract, ContractName } from "~~/utils/scaffold-eth/contract";
 
 export const ContractReadMethods = ({ deployedContractData }: { deployedContractData: Contract<ContractName> }) => {
   if (!deployedContractData) {
