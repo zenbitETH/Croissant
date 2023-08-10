@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { isAddress, isHex } from "viem";
-import { usePublicClient } from "wagmi";
-import { hardhat } from "wagmi/chains";
+import { getLocalProvider } from "@/utils/scaffold-eth";
+import { ethers } from "ethers";
+import { localhost } from "wagmi/chains";
 
+const provider = getLocalProvider(localhost);
 export const SearchBar = () => {
   const [searchInput, setSearchInput] = useState("");
   const router = useRouter();
 
-  const client = usePublicClient({ chainId: hardhat.id });
-
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (isHex(searchInput)) {
+    if (ethers.utils.isHexString(searchInput)) {
       try {
-        const tx = await client.getTransaction({ hash: searchInput });
+        const tx = await provider?.getTransaction(searchInput);
         if (tx) {
           router.push(`/blockexplorer/transaction/${searchInput}`);
           return;
@@ -24,7 +23,7 @@ export const SearchBar = () => {
       }
     }
 
-    if (isAddress(searchInput)) {
+    if (ethers.utils.isAddress(searchInput)) {
       router.push(`/blockexplorer/address/${searchInput}`);
       return;
     }

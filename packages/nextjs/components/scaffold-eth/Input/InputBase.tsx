@@ -1,13 +1,14 @@
 import { ChangeEvent, ReactNode, useCallback } from "react";
-import { CommonInputProps } from "~~/components/scaffold-eth";
+import { CommonInputProps } from "@/components/scaffold-eth";
 
 type InputBaseProps<T> = CommonInputProps<T> & {
   error?: boolean;
+  disabled?: boolean;
   prefix?: ReactNode;
   suffix?: ReactNode;
 };
 
-export const InputBase = <T extends { toString: () => string } | undefined = string>({
+export const InputBase = <T extends { toString: () => string } = string>({
   name,
   value,
   onChange,

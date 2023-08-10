@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import scaffoldConfig from "@/scaffold.config";
+import { fetchPriceFromUniswap } from "@/utils/scaffold-eth";
 import { useInterval } from "usehooks-ts";
-import scaffoldConfig from "~~/scaffold.config";
-import { fetchPriceFromUniswap } from "~~/utils/scaffold-eth";
+import { useProvider } from "wagmi";
 
 const enablePolling = false;
 
@@ -10,20 +11,21 @@ const enablePolling = false;
  * @returns nativeCurrencyPrice: number
  */
 export const useNativeCurrencyPrice = () => {
+  const provider = useProvider({ chainId: 1 });
   const [nativeCurrencyPrice, setNativeCurrencyPrice] = useState(0);
 
   // Get the price of ETH from Uniswap on mount
   useEffect(() => {
     (async () => {
-      const price = await fetchPriceFromUniswap();
+      const price = await fetchPriceFromUniswap(provider);
       setNativeCurrencyPrice(price);
     })();
-  }, []);
+  }, [provider]);
 
   // Get the price of ETH from Uniswap at a given interval
   useInterval(
     async () => {
-      const price = await fetchPriceFromUniswap();
+      const price = await fetchPriceFromUniswap(provider);
       setNativeCurrencyPrice(price);
     },
     enablePolling ? scaffoldConfig.pollingInterval : null,

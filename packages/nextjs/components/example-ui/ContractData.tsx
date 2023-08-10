@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import Marquee from "react-fast-marquee";
-import { useAccount } from "wagmi";
 import {
   useAnimationConfig,
   useScaffoldContract,
   useScaffoldContractRead,
   useScaffoldEventHistory,
   useScaffoldEventSubscriber,
-} from "~~/hooks/scaffold-eth";
+} from "@/hooks/scaffold-eth";
+import { gql, useQuery } from "@apollo/client";
+import Marquee from "react-fast-marquee";
+import { useAccount } from "wagmi";
 
 const MARQUEE_PERIOD_IN_SEC = 5;
 
@@ -33,11 +34,8 @@ export const ContractData = () => {
   useScaffoldEventSubscriber({
     contractName: "YourContract",
     eventName: "GreetingChange",
-    listener: logs => {
-      logs.map(log => {
-        const { greetingSetter, value, premium, newGreeting } = log.args;
-        console.log("📡 GreetingChange event", greetingSetter, value, premium, newGreeting);
-      });
+    listener: (greetingSetter, newGreeting, premium, value) => {
+      console.log(greetingSetter, newGreeting, premium, value);
     },
   });
 
@@ -48,7 +46,7 @@ export const ContractData = () => {
   } = useScaffoldEventHistory({
     contractName: "YourContract",
     eventName: "GreetingChange",
-    fromBlock: process.env.NEXT_PUBLIC_DEPLOY_BLOCK ? BigInt(process.env.NEXT_PUBLIC_DEPLOY_BLOCK) : 0n,
+    fromBlock: Number(process.env.NEXT_PUBLIC_DEPLOY_BLOCK) || 0,
     filters: { greetingSetter: address },
     blockData: true,
   });
@@ -69,6 +67,27 @@ export const ContractData = () => {
       );
     }
   }, [transitionEnabled, containerRef, greetingRef]);
+
+  const GREETINGS_GRAPHQL = `
+  {
+    greetings(first: 25, orderBy: createdAt, orderDirection: desc) {
+      id
+      greeting
+      premium
+      value
+      createdAt
+      sender {
+        address
+        greetingCount
+      }
+    }
+  }
+  `;
+
+  const GREETINGS_GQL = gql(GREETINGS_GRAPHQL);
+  const greetingsData = useQuery(GREETINGS_GQL, { pollInterval: 1000 });
+
+  console.log("greetingsData: ", greetingsData);
 
   return (
     <div className="flex flex-col justify-center items-center bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] py-10 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">

@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import fs from "fs";
-import { GetServerSideProps } from "next";
-import path from "path";
-import { createPublicClient, http } from "viem";
-import { hardhat } from "wagmi/chains";
 import {
   AddressCodeTab,
   AddressLogsTab,
   AddressStorageTab,
   PaginationButton,
   TransactionsTable,
-} from "~~/components/blockexplorer/";
-import { Address, Balance } from "~~/components/scaffold-eth";
-import deployedContracts from "~~/generated/deployedContracts";
-import { useFetchBlocks } from "~~/hooks/scaffold-eth";
-import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
+} from "@/components/blockexplorer/";
+import { Address, Balance } from "@/components/scaffold-eth";
+import deployedContracts from "@/generated/deployedContracts";
+import { useFetchBlocks } from "@/hooks/scaffold-eth";
+import { getLocalProvider } from "@/utils/scaffold-eth";
+import { GenericContractsDeclaration } from "@/utils/scaffold-eth/contract";
+import fs from "fs";
+import { GetServerSideProps } from "next";
+import path from "path";
+import { hardhat, localhost } from "wagmi/chains";
 
 type AddressCodeTabProps = {
   bytecode: string;
@@ -27,10 +27,7 @@ type PageProps = {
   contractData: AddressCodeTabProps | null;
 };
 
-const publicClient = createPublicClient({
-  chain: hardhat,
-  transport: http(),
-});
+const provider = getLocalProvider(localhost);
 
 const AddressPage = ({ address, contractData }: PageProps) => {
   const router = useRouter();
@@ -40,20 +37,17 @@ const AddressPage = ({ address, contractData }: PageProps) => {
 
   useEffect(() => {
     const checkIsContract = async () => {
-      const contractCode = await publicClient.getBytecode({ address: address });
-      setIsContract(contractCode !== undefined && contractCode !== "0x");
+      const contractCode = await provider?.getCode(address);
+      setIsContract(contractCode !== "0x");
     };
 
     checkIsContract();
   }, [address]);
 
   const filteredBlocks = blocks.filter(block =>
-    block.transactions.some(tx => {
-      if (typeof tx === "string") {
-        return false;
-      }
-      return tx.from.toLowerCase() === address.toLowerCase() || tx.to?.toLowerCase() === address.toLowerCase();
-    }),
+    block.transactions.some(
+      tx => tx.from.toLowerCase() === address.toLowerCase() || tx.to?.toLowerCase() === address.toLowerCase(),
+    ),
   );
 
   return (
@@ -109,11 +103,7 @@ const AddressPage = ({ address, contractData }: PageProps) => {
       {activeTab === "transactions" && (
         <div className="pt-4">
           <TransactionsTable blocks={filteredBlocks} transactionReceipts={transactionReceipts} isLoading={isLoading} />
-          <PaginationButton
-            currentPage={currentPage}
-            totalItems={Number(totalBlocks)}
-            setCurrentPage={setCurrentPage}
-          />
+          <PaginationButton currentPage={currentPage} totalItems={totalBlocks} setCurrentPage={setCurrentPage} />
         </div>
       )}
       {activeTab === "code" && contractData && (
