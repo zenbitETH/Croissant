@@ -3,6 +3,44 @@ module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}", "./utils/**/*.{js,ts,jsx,tsx}"],
   plugins: [require("daisyui")],
   darkTheme: "scaffoldEthDark",
+  theme: {
+    // Extend Tailwind classes (e.g. font-bai-jamjuree, animate-grow)
+    extend: {
+      colors: {
+        display: ["group-hover"],
+        l1: "#2D4878",
+        l2: "#C74D63",
+        bt: "#FDFFE9",
+        bth: "#BFD6E8",
+      },
+      fontFamily: {
+        kan: ["Kanit"],
+        kum: ["Kumbh Sans"],
+      },
+      borderRadius: {
+        dd: "22px",
+      },
+      keyframes: {
+        grow: {
+          "0%": {
+            width: "0%",
+          },
+          "100%": {
+            width: "100%",
+          },
+        },
+        zoom: {
+          "0%, 100%": { transform: "scale(1, 1)" },
+          "50%": { transform: "scale(1.1, 1.1)" },
+        },
+      },
+      animation: {
+        grow: "grow 5s linear infinite",
+        "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        zoom: "zoom 1s ease infinite",
+      },
+    },
+  },
   // DaisyUI theme colors
   daisyui: {
     themes: [
@@ -38,11 +76,11 @@ module.exports = {
           "primary-content": "#F9FBFF",
           secondary: "#323f61",
           "secondary-content": "#F9FBFF",
-          accent: "#4969A6",
+          accent: "#C74D63",
           "accent-content": "#F9FBFF",
           neutral: "#F9FBFF",
-          "neutral-content": "#385183",
-          "base-100": "#385183",
+          "neutral-content": "#2D4878",
+          "base-100": "#2D4878",
           "base-200": "#2A3655",
           "base-300": "#212638",
           "base-content": "#F9FBFF",
@@ -86,35 +124,5 @@ module.exports = {
         },
       },
     ],
-  },
-  theme: {
-    // Extend Tailwind classes (e.g. font-bai-jamjuree, animate-grow)
-    extend: {
-      fontFamily: {
-        "bai-jamjuree": ["Bai Jamjuree", "sans-serif"],
-      },
-      boxShadow: {
-        center: "0 0 12px -2px rgb(0 0 0 / 0.05)",
-      },
-      keyframes: {
-        grow: {
-          "0%": {
-            width: "0%",
-          },
-          "100%": {
-            width: "100%",
-          },
-        },
-        zoom: {
-          "0%, 100%": { transform: "scale(1, 1)" },
-          "50%": { transform: "scale(1.1, 1.1)" },
-        },
-      },
-      animation: {
-        grow: "grow 5s linear infinite",
-        "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        zoom: "zoom 1s ease infinite",
-      },
-    },
   },
 };
