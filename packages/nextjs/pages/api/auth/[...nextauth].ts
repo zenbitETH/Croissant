@@ -2,6 +2,8 @@
 // with added process.env.VERCEL_URL detection to support preview deployments
 // and with auth option logic extracted into a 'getAuthOptions' function so it
 // can be used to get the session server-side with 'getServerSession'
+import prisma from "@/db/prisma";
+import { TeamRole, TeamType } from "@prisma/client";
 import { IncomingMessage } from "http";
 import { NextApiRequest, NextApiResponse } from "next";
 import NextAuth, { NextAuthOptions } from "next-auth";
@@ -31,9 +33,29 @@ export function getAuthOptions(req: IncomingMessage): NextAuthOptions {
             return null;
           }
 
-          await siwe.verify({ signature: credentials?.signature || "" });
+          const verified = await siwe.verify({ signature: credentials?.signature || "" });
+
+          if (!verified.success) {
+            throw new Error("Verification failed");
+          }
+          const { data: fields } = verified;
+
+          const user = await prisma.user.upsert({
+            where: { id: fields.address },
+            create: {
+              id: fields.address,
+              teams: {
+                create: { team: { create: { name: "Personal Team", type: TeamType.PERSONAL } }, role: TeamRole.OWNER },
+              },
+            },
+            update: {},
+            select: { teams: { select: { teamId: true } } },
+          });
+
           return {
-            id: siwe.address,
+            id: fields.address,
+            nonce: undefined,
+            teamId: user.teams[0].teamId,
           };
         } catch (e) {
           return null;

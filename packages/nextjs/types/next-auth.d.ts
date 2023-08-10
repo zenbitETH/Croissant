@@ -7,6 +7,9 @@ declare module "next-auth" {
   interface Session {
     /** The user's public Ethereum address. */
     address?: string;
+    nonce?: string;
+    teamId?: string;
+    userId?: string;
     user: DefaultSession["user"];
   }
 }
