@@ -18,6 +18,7 @@ const navigation = [
 const DashboardPage = async () => {
   // const session = await Session.fromCookies(cookies());
   const { data: sessionData } = useSession();
+
   const user = await prisma.user.findUnique({
     where: { id: sessionData?.userId },
     select: { teams: { select: { team: true } } },
@@ -28,6 +29,7 @@ const DashboardPage = async () => {
   const switchTeam = async (teamId: string) => {
     "use server";
 
+    console.log("on switchTeam");
     // const session = await Session.fromCookies(cookies());
     const session = await getServerSession();
     const team = await prisma.team.findUniqueOrThrow({

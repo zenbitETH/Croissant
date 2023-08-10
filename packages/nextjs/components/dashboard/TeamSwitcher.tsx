@@ -69,6 +69,7 @@ const TeamSwitcher: FC<{
   const [showNewTeamDialog, setShowNewTeamDialog] = useState(false);
 
   const selectedTeam = useMemo(() => {
+    console.log("on selectedTeam Memo");
     // const team = teams.find(team => team.id == currentTeamId)!; // original line
     const team = teams.find(team => team.id == currentTeamId); // removed the null assertion !
 
@@ -85,6 +86,7 @@ const TeamSwitcher: FC<{
   );
 
   const createTeam = async () => {
+    console.log("on createTeam");
     await onCreate(name);
 
     setName("");
