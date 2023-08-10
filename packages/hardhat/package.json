@@ -1,5 +1,5 @@
 {
-  "name": "@croissant/hardhat",
+  "name": "@se-2/hardhat",
   "version": "0.0.1",
   "scripts": {
     "account": "hardhat run scripts/listAccount.ts",

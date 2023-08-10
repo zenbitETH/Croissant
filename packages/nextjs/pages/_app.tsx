@@ -5,12 +5,14 @@ import { Header } from "@/components/Header";
 import { BlockieAvatar } from "@/components/scaffold-eth";
 import { useNativeCurrencyPrice } from "@/hooks/scaffold-eth";
 import { useGlobalState } from "@/services/store/store";
-import { wagmiClient } from "@/services/web3/wagmiClient";
+import { wagmiConfig } from "@/services/web3/wagmiConfig";
 import { appChains } from "@/services/web3/wagmiConnectors";
 import "@/styles/globals.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
+import { RainbowKitSiweNextAuthProvider } from "@rainbow-me/rainbowkit-siwe-next-auth";
 import "@rainbow-me/rainbowkit/styles.css";
+import { SessionProvider } from "next-auth/react";
 import NextNProgress from "nextjs-progressbar";
 import { Toaster } from "react-hot-toast";
 import { useDarkMode } from "usehooks-ts";
@@ -41,22 +43,26 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ApolloProvider client={apolloClient}>
-      <WagmiConfig client={wagmiClient}>
+      <WagmiConfig config={wagmiConfig}>
         <NextNProgress />
-        <RainbowKitProvider
-          chains={appChains.chains}
-          avatar={BlockieAvatar}
-          theme={isDarkTheme ? darkTheme() : lightTheme()}
-        >
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="relative flex flex-col flex-1">
-              <Component {...pageProps} />
-            </main>
-            <Footer />
-          </div>
-          <Toaster />
-        </RainbowKitProvider>
+        <SessionProvider refetchInterval={0} session={pageProps.session}>
+          <RainbowKitSiweNextAuthProvider>
+            <RainbowKitProvider
+              chains={appChains.chains}
+              avatar={BlockieAvatar}
+              theme={isDarkTheme ? darkTheme() : lightTheme()}
+            >
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="relative flex flex-col flex-1">
+                  <Component {...pageProps} />
+                </main>
+                <Footer />
+              </div>
+              <Toaster />
+            </RainbowKitProvider>
+          </RainbowKitSiweNextAuthProvider>
+        </SessionProvider>
       </WagmiConfig>
     </ApolloProvider>
   );

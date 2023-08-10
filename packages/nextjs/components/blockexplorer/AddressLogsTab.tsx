@@ -1,6 +1,8 @@
 import { useContractLogs } from "@/hooks/scaffold-eth";
+import { replacer } from "@/utils/scaffold-eth/common";
+import { Address } from "viem";
 
-export const AddressLogsTab = ({ address }: { address: string }) => {
+export const AddressLogsTab = ({ address }: { address: Address }) => {
   const contractLogs = useContractLogs(address);
 
   return (
@@ -9,7 +11,7 @@ export const AddressLogsTab = ({ address }: { address: string }) => {
         <pre className="px-5 whitespace-pre-wrap break-words">
           {contractLogs.map((log, i) => (
             <div key={i}>
-              <strong>Log:</strong> {JSON.stringify(log, null, 2)}
+              <strong>Log:</strong> {JSON.stringify(log, replacer, 2)}
             </div>
           ))}
         </pre>

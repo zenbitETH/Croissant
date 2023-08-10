@@ -1,5 +1,4 @@
 import scaffoldConfig from "@/scaffold.config";
-import { Network } from "@ethersproject/networks";
 import * as chains from "wagmi/chains";
 
 export type TChainAttributes = {
@@ -60,9 +59,7 @@ export const NETWORKS_EXTRA_DATA: Record<string, TChainAttributes> = {
  * @param txnHash
  * @dev returns empty string if the network is localChain
  */
-export function getBlockExplorerTxLink(network: Network, txnHash: string) {
-  const { chainId } = network;
-
+export function getBlockExplorerTxLink(chainId: number, txnHash: string) {
   const chainNames = Object.keys(chains);
 
   const targetChainArr = chainNames.filter(chainName => {

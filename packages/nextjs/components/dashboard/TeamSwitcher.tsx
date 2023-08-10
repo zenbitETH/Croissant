@@ -26,7 +26,7 @@ import { cn } from "@/utils/scaffold-eth/dashboard";
 import { actionToast } from "@/utils/scaffold-eth/errors";
 import { CaretUpDown, Check, PlusCircle } from "@phosphor-icons/react";
 import { Team, TeamType } from "@prisma/client";
-import { useAccount, useEnsAvatar } from "wagmi";
+import { useAccount, useEnsAvatar, useEnsName } from "wagmi";
 
 // const groups = [
 //   {
@@ -61,9 +61,8 @@ const TeamSwitcher: FC<{
   onSwitch: (teamId: string) => Promise<unknown>;
 }> = ({ className, teams, currentTeamId, onSwitch, onCreate }) => {
   const { address } = useAccount();
-  // const { data: ensName } = useEnsName({ address }); // original line was uncommented to be used below
-  // const { data: userAvatar } = useEnsAvatar({ name: ensName }); // original line
-  const { data: userAvatar } = useEnsAvatar({ address }); // original line
+  const { data: ensName } = useEnsName({ address }); // original line was uncommented to be used below
+  const { data: userAvatar } = useEnsAvatar({ name: ensName }); // original line
 
   const [open, setOpen] = useState(false);
   const [name, setName] = useState<string>("");
@@ -208,7 +207,7 @@ const TeamSwitcher: FC<{
           <DialogTitle>Create team</DialogTitle>
           <DialogDescription>Add a new team to manage products and customers.</DialogDescription>
         </DialogHeader>
-        <form action={createTeam}>
+        <form action={void createTeam}>
           <div className="space-y-4 py-2 pb-4">
             <div className="space-y-2">
               <Label htmlFor="name">Team name</Label>
