@@ -7,18 +7,17 @@ module.exports = {
     // Extend Tailwind classes (e.g. font-bai-jamjuree, animate-grow)
     extend: {
       colors: {
-        display: ["group-hover"],
         l1: "#2D4878",
         l2: "#C74D63",
         bt: "#FDFFE9",
         bth: "#BFD6E8",
       },
       fontFamily: {
-        kan: ["Kanit"],
-        kum: ["Kumbh Sans"],
+        kan: ['Kanit', 'sans'], 
+        kum: ['"Kumbh Sans"', 'sans'],
       },
       borderRadius: {
-        dd: "22px",
+        dd: "30px",
       },
       keyframes: {
         grow: {
