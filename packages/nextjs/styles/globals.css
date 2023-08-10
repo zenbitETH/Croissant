@@ -19,6 +19,13 @@ p {
   margin: 1rem 0;
 }
 
+.homeBT {
+  @apply
+  bg-bt rounded-dd hover:bg-bth cursor-pointer
+  text-l1 hover:text-l2 text-center w-fit mx-auto
+  px-5 py-2 font-kan text-xl md:text-2xl 
+}
+
 .btn {
   @apply shadow-md;
 }
