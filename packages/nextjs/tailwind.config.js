@@ -18,6 +18,7 @@ module.exports = {
       },
       borderRadius: {
         dd: "30px",
+        ii: "18px",
       },
       keyframes: {
         grow: {

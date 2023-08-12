@@ -55,7 +55,7 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
             >
               <AppContextProvider>
                 <>
-                  <div className="min-h-screen">
+                  <div className="flex flex-col min-h-screen">
                     <Header />
                     <main className="relative">
                       <Component {...pageProps} />
