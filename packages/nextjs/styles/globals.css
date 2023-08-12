@@ -26,6 +26,15 @@ p {
   px-5 py-2 font-kan text-xl md:text-2xl 
 }
 
+.carBT {
+  @apply
+  fixed bottom-0 transform
+ -translate-y-1/2 border
+  hover:bg-white/50 text-2xl m-auto h-12 w-12 px-2
+  rounded-full shadow-md items-center grid text-center
+  fill-white/50 hover:fill-bt backdrop-blur-lg
+}
+
 .btn {
   @apply shadow-md;
 }
