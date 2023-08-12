@@ -1,5 +1,3 @@
-"use client";
-
 import { FC, useMemo, useState } from "react";
 import Avatar, { AvatarFallback, AvatarImage } from "@/components/dashboard/ui/Avatar";
 import Button from "@/components/dashboard/ui/Button";
@@ -60,6 +58,7 @@ const TeamSwitcher: FC<{
   onCreate: (name: string) => Promise<unknown>;
   onSwitch: (teamId: string) => Promise<unknown>;
 }> = ({ className, teams, currentTeamId, onSwitch, onCreate }) => {
+  console.log("TeamSwitcher on");
   const { address } = useAccount();
   const { data: ensName } = useEnsName({ address }); // original line was uncommented to be used below
   const { data: userAvatar } = useEnsAvatar({ name: ensName }); // original line
@@ -86,7 +85,7 @@ const TeamSwitcher: FC<{
   );
 
   const createTeam = async () => {
-    console.log("on createTeam");
+    console.log("on createTeam2");
     await onCreate(name);
 
     setName("");
@@ -209,7 +208,7 @@ const TeamSwitcher: FC<{
           <DialogTitle>Create team</DialogTitle>
           <DialogDescription>Add a new team to manage products and customers.</DialogDescription>
         </DialogHeader>
-        <form action={void createTeam}>
+        <form /* action={createTeam} */>
           <div className="space-y-4 py-2 pb-4">
             <div className="space-y-2">
               <Label htmlFor="name">Team name</Label>
@@ -218,12 +217,12 @@ const TeamSwitcher: FC<{
                 placeholder="Acme Inc."
                 value={name}
                 onChange={e => setName(e.target.value)}
-                onKeyDown={e => {
-                  if (e.key !== "Enter") return;
+                // onKeyDown={e => {
+                //   if (e.key !== "Enter") return;
 
-                  e.preventDefault();
-                  createTeam();
-                }}
+                //   e.preventDefault();
+                //   // createTeam();
+                // }}
               />
             </div>
           </div>
@@ -231,7 +230,9 @@ const TeamSwitcher: FC<{
             <Button variant="outline" onClick={() => setShowNewTeamDialog(false)}>
               Cancel
             </Button>
-            <Button type="submit">Continue</Button>
+            <Button type="button" onClick={() => createTeam()}>
+              Continue
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

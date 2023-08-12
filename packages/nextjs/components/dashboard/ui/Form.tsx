@@ -1,5 +1,3 @@
-"use client";
-
 import { FormEvent } from "react";
 import { ElementRef, HTMLAttributes, createContext, forwardRef, useContext, useId } from "react";
 import type { LabelProps, Root as LabelRoot } from "./Label";

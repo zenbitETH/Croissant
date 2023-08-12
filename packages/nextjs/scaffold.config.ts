@@ -7,6 +7,8 @@ export type ScaffoldConfig = {
   walletConnectProjectId: string;
   onlyLocalBurnerWallet: boolean;
   walletAutoConnect: boolean;
+  nextAuthSecret: string;
+  nextAuthUrl: string;
 };
 
 const scaffoldConfig = {
@@ -32,6 +34,8 @@ const scaffoldConfig = {
   // Only show the Burner Wallet when running on hardhat network
   onlyLocalBurnerWallet: true,
 
+  nextAuthSecret: process.env.NEXTAUTH_SECRET || "secret",
+  nextAuthUrl: process.env.NEXTAUTH_URL || "http://localhost:3000",
   /**
    * Auto connect:
    * 1. If the user was connected into a wallet before, on page reload reconnect automatically

@@ -32,6 +32,7 @@
     "@rainbow-me/rainbowkit-siwe-next-auth": "^0.3.0",
     "@uniswap/sdk-core": "^4.0.1",
     "@uniswap/v2-sdk": "^3.0.1",
+    "@vercel/postgres": "^0.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",

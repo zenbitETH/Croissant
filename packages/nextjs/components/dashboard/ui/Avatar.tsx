@@ -1,5 +1,3 @@
-"use client";
-
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
 import { cn } from "@/utils/scaffold-eth/dashboard";
 import { Fallback, Image, Root } from "@radix-ui/react-avatar";

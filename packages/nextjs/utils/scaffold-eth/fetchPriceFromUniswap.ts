@@ -11,9 +11,9 @@ const publicClient = createPublicClient({
 });
 
 const ABI = parseAbi([
-  "function getReserves() external view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast)",
-  "function token0() external view returns (address)",
-  "function token1() external view returns (address)",
+  "function getReserves() external view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast)" as const,
+  "function token0() external view returns (address)" as const,
+  "function token1() external view returns (address)" as const,
 ]);
 
 export const fetchPriceFromUniswap = async (): Promise<number> => {

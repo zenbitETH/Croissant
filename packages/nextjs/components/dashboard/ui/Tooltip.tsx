@@ -1,5 +1,3 @@
-"use client";
-
 import { ElementRef, FC, forwardRef } from "react";
 import { cn } from "@/utils/scaffold-eth/dashboard";
 import { Content, Provider, Root, TooltipContentProps, TooltipProps, Trigger } from "@radix-ui/react-tooltip";

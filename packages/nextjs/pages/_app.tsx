@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { BlockieAvatar } from "@/components/scaffold-eth";
+import { AppContextProvider } from "@/contexts/AppContextProvider";
 import { useNativeCurrencyPrice } from "@/hooks/scaffold-eth";
 import { useGlobalState } from "@/services/store/store";
 import { wagmiConfig } from "@/services/web3/wagmiConfig";
@@ -52,14 +53,16 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
               avatar={BlockieAvatar}
               theme={isDarkTheme ? darkTheme() : lightTheme()}
             >
-              <div className="bg-gradient-to-b from-l1 to-l2 flex flex-col min-h-screen">
-                <Header />
-                <main className="relative flex flex-col flex-1">
-                  <Component {...pageProps} />
-                </main>
-                <Footer />
-              </div>
-              <Toaster />
+              <AppContextProvider>
+                <div className="bg-gradient-to-b from-l1 to-l2 flex flex-col min-h-screen">
+                  <Header />
+                  <main className="relative flex flex-col flex-1">
+                    <Component {...pageProps} />
+                  </main>
+                  <Footer />
+                </div>
+                <Toaster />
+              </AppContextProvider>
             </RainbowKitProvider>
           </RainbowKitSiweNextAuthProvider>
         </SessionProvider>

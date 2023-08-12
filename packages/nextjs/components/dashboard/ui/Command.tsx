@@ -1,5 +1,3 @@
-"use client";
-
 import { ComponentPropsWithoutRef, ElementRef, HTMLAttributes, forwardRef } from "react";
 import Dialog, { DialogContent } from "@/components/dashboard/ui/Dialog";
 import { cn } from "@/utils/scaffold-eth/dashboard";
