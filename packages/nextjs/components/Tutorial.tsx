@@ -35,7 +35,7 @@ const Tutorial: React.FC = () => {
         <div className="md:mx-20 gap-3 pt-24 pb-36 font-bau h-full grid items-center px-3 mb-20">
           <iframe
             className="w-full h-full rounded-2xl"
-            src="https://www.youtube.com/embed/G7e5jdp9mhc"
+            src="https://www.youtube.com/embed/Mwr3eJgp4_M"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen
