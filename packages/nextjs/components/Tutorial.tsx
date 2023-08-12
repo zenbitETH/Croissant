@@ -8,8 +8,8 @@ interface Section {
 }
 
 const sections: Section[] = [
-  { id: 1, title: "Home" },
-  { id: 2, title: "Problem" },
+  { id: 1, title: "Youtube Video" },
+  { id: 2, title: "Additional Info" },
 ];
 
 const Tutorial: React.FC = () => {
@@ -32,7 +32,7 @@ const Tutorial: React.FC = () => {
   return (
     <div className="overflow-hidden text-center h-screen grid items-center  relative">
       {activeSection.id === 1 && (
-        <div className="md:mx-20 gap-3 font-bau h-3/4 grid items-center px-3 mb-20">
+        <div className="md:mx-20 gap-3 pt-24 pb-36 font-bau h-full grid items-center px-3 mb-20">
           <iframe
             className="w-full h-full rounded-2xl"
             src="https://www.youtube.com/embed/G7e5jdp9mhc"
@@ -44,7 +44,7 @@ const Tutorial: React.FC = () => {
         </div>
       )}
       {activeSection.id === 2 && (
-        <div className="mx-3 py-24 gap-5 h-full grid items-center  text-white font-exo overflow-y-auto hide-scrollbar">
+        <div className="mx-20 pt-10 pb-36 gap-5 h-full grid items-center  text-white font-exo overflow-y-auto hide-scrollbar">
           <div className="bg-black/20 rounded-dd h-full p-5 ">
             <div className="text-sm md:text-base text-justify">hello1 </div>
           </div>
