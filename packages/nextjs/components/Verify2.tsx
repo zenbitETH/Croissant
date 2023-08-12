@@ -1,4 +1,4 @@
-export default function Verify1() {
+export default function Verify2() {
   return (
     <div className="overflow-hidden text-center h-screen grid items-center  relative">
       <div className="grid gap-5 mx-auto">
