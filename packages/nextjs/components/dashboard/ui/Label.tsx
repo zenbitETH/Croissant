@@ -1,5 +1,3 @@
-"use client";
-
 import { ElementRef, forwardRef } from "react";
 import { cn } from "@/utils/scaffold-eth/dashboard";
 import { LabelProps, Root } from "@radix-ui/react-label";

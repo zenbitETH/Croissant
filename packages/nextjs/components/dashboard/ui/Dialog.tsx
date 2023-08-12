@@ -1,5 +1,3 @@
-"use client";
-
 import { ElementRef, HTMLAttributes, forwardRef } from "react";
 import { cn } from "@/utils/scaffold-eth/dashboard";
 import { X } from "@phosphor-icons/react";

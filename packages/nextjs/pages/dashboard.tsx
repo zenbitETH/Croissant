@@ -1,13 +1,17 @@
+// import { useEffect, useState } from "react";
 import Link from "next/link";
+import { getAuthOptions } from "./api/auth/[...nextauth]";
 import BlockPlaceholder from "@/components/dashboard/BlockPlaceholder";
 import Navigation from "@/components/dashboard/Navigation";
 import TeamSwitcher from "@/components/dashboard/TeamSwitcher";
 import Collapsible, { CollapsibleContent, CollapsibleTrigger } from "@/components/dashboard/ui/Collapsible";
 import { Bell, Cube, List, X } from "@/components/dashboard/ui/icons";
 import { RainbowKitCustomConnectButton } from "@/components/scaffold-eth";
+import { useAppContext } from "@/contexts/AppContext";
 import prisma from "@/db/prisma";
-import { error } from "@/utils/scaffold-eth/errors";
-import { getServerSession } from "next-auth/next";
+import { Team } from "@prisma/client";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 
 const navigation = [
@@ -15,48 +19,65 @@ const navigation = [
   { name: "Team Settings", href: "/dashboard/team-settings" },
 ];
 
-const DashboardPage = async () => {
-  // const session = await Session.fromCookies(cookies());
-  const { data: sessionData } = useSession();
-  const user = await prisma.user.findUnique({
-    where: { id: sessionData?.userId },
+// @ts-ignore
+export const getServerSideProps: GetServerSideProps<{
+  teams: {
+    team: Team[];
+  }[];
+}> = async context => {
+  const session = await getServerSession(context.req, context.res, getAuthOptions(context.req));
+
+  const teams = await prisma.user.findUnique({
+    where: { id: session?.user.id },
     select: { teams: { select: { team: true } } },
   });
 
-  if (!user) throw new Error("User not found");
+  if (!teams) {
+    return {
+      props: {
+        teams: [],
+      },
+    };
+  }
+
+  return {
+    props: {
+      teams: teams.teams,
+    },
+  };
+};
+
+const DashboardPage = ({ teams }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { data: sessionData } = useSession();
+  // const [teams, setTeams] = useState<Team[] | null>(null);
+  const { setSelectedTeamId, selectedTeamId } = useAppContext();
 
   const switchTeam = async (teamId: string) => {
-    "use server";
+    const body = { teamId, userId: sessionData?.user.id };
 
-    // const session = await Session.fromCookies(cookies());
-    const session = await getServerSession();
-    const team = await prisma.team.findUniqueOrThrow({
-      where: { id: teamId },
-      include: { members: { where: { userId: session?.userId } } },
-    });
-
-    if (!team.members.length) return error("You are not a member of this team");
-    // session.teamId = team.id; // possibly will need to fix this - will brake
-
-    // revalidatePath("/dashboard/team-settings"); // for app router
-    // await session.persist(cookies());
+    await fetch(`/api/getteamsfromuser`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+      .then(res => res.json())
+      .then(newTeam => {
+        setSelectedTeamId(newTeam.id);
+      });
   };
 
   const createTeam = async (name: string) => {
-    "use server";
+    const body = { name, userId: sessionData?.user.id };
 
-    // const session = await Session.fromCookies(cookies());
-    const session = await getServerSession();
-    await prisma.team.create({
-      data: {
-        name,
-        members: { create: { user: { connect: { id: session?.userId } }, role: "OWNER" } },
-      },
-    });
-    // session.teamId = team.id; // possibly will need to fix this - will brake
-
-    // revalidatePath("/dashboard/team-settings"); // for app router
-    // await session.persist(cookies());
+    await fetch(`/api/createteam`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+      .then(res => res.json())
+      .then(newTeam => {
+        setSelectedTeamId(newTeam.id);
+      });
   };
 
   return (
@@ -75,8 +96,9 @@ const DashboardPage = async () => {
                       className="ml-4"
                       onSwitch={switchTeam}
                       onCreate={createTeam}
-                      currentTeamId={String(sessionData?.teamId)}
-                      teams={user.teams.map(membership => membership.team)}
+                      currentTeamId={String(selectedTeamId)}
+                      teams={teams?.map((membership: any) => membership.team)}
+                      // teams={teams}
                     />
                   </div>
                   <div className="hidden md:block">
@@ -88,9 +110,7 @@ const DashboardPage = async () => {
                         <span className="sr-only">View notifications</span>
                         <Bell className="h-6 w-6" aria-hidden="true" />
                       </button>
-                      <div className="relative ml-3">
-                        <RainbowKitCustomConnectButton />
-                      </div>
+                      <div className="relative ml-3">{/* <RainbowKitCustomConnectButton /> */}</div>
                     </div>
                   </div>
                   <div className="-mr-2 flex md:hidden">

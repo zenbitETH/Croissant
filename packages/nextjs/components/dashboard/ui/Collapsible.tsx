@@ -1,5 +1,3 @@
-"use client";
-
 import { Content, Root, Trigger } from "@radix-ui/react-collapsible";
 
 const Collapsible = Root;
