@@ -42,3 +42,15 @@ p {
 .btn.btn-ghost {
   @apply shadow-none;
 }
+
+.radio {
+  @apply 
+  h-14 w-14
+  border-bth border-4
+}
+
+.radio:checked
+{
+  @apply
+  bg-l1
+}
