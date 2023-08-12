@@ -54,14 +54,16 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
               theme={isDarkTheme ? darkTheme() : lightTheme()}
             >
               <AppContextProvider>
-                <div className="bg-gradient-to-b from-l1 to-l2 flex flex-col min-h-screen">
-                  <Header />
-                  <main className="relative flex flex-col flex-1">
-                    <Component {...pageProps} />
-                  </main>
-                  <Footer />
-                </div>
-                <Toaster />
+                <>
+                  <div className="min-h-screen">
+                    <Header />
+                    <main className="relative">
+                      <Component {...pageProps} />
+                    </main>
+                    <Footer />
+                  </div>
+                  <Toaster />
+                </>
               </AppContextProvider>
             </RainbowKitProvider>
           </RainbowKitSiweNextAuthProvider>

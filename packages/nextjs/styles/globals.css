@@ -21,9 +21,18 @@ p {
 
 .homeBT {
   @apply
-  bg-bt rounded-dd hover:bg-bth cursor-pointer
-  text-l1 hover:text-l2 text-center w-fit mx-auto
+  bg-l2 rounded-dd hover:bg-bth cursor-pointer
+  text-bt hover:text-l1 text-center w-fit mx-auto
   px-5 py-2 font-kan text-xl md:text-2xl 
+}
+
+.carBT {
+  @apply
+  fixed bottom-0 transform
+ -translate-y-1/2 border
+  hover:bg-white/50 text-2xl m-auto h-12 w-12 px-2
+  rounded-full shadow-md items-center grid text-center
+  fill-white/50 hover:fill-bt backdrop-blur-lg
 }
 
 .btn {
@@ -32,4 +41,16 @@ p {
 
 .btn.btn-ghost {
   @apply shadow-none;
+}
+
+.radio {
+  @apply 
+  h-14 w-14
+  border-bth border-4
+}
+
+.radio:checked {
+  @apply
+  bg-l1
+  animate-pulse
 }
