@@ -27,19 +27,10 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async context => {
   const session = await getServerSession(context.req, context.res, getAuthOptions(context.req));
 
-  // const params = new URLSearchParams({
-  //   userId: session?.user.id as string,
-  // });
-
-  // const res = await fetch(`/api/getuserteam/${params}`);
-  // const repo = await res.json();
-
   const teams = await prisma.user.findUnique({
     where: { id: session?.user.id },
     select: { teams: { select: { team: true } } },
   });
-
-  console.log("asdasdsadd", { teams });
 
   if (!teams) {
     return {
@@ -61,39 +52,7 @@ const DashboardPage = ({ teams }: InferGetServerSidePropsType<typeof getServerSi
   // const [teams, setTeams] = useState<Team[] | null>(null);
   const { setSelectedTeamId, selectedTeamId } = useAppContext();
 
-  // const fetchData = () => {
-  //   console.log(sessionData?.user.id);
-  //   console.log("OOOKHAII");
-  //   try {
-  //     const params = new URLSearchParams({
-  //       userId: sessionData?.user.id as string,
-  //     });
-  //     fetch(`/api/getuserteam/${params}`, {
-  //       method: "GET",
-  //       headers: { "Content-Type": "application/json" },
-  //     })
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         console.log({ data });
-  //       })
-  //       .catch(err => console.error(err));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-
-  //   // setTeams(data);
-  // };
-
-  // useEffect(() => {
-  // if (sessionData?.user.id) {
-  // console.log("fetch");
-  // fetchData();
-  // }
-  // }, []);
-
   const switchTeam = async (teamId: string) => {
-    console.log("on switchTeam");
-
     const body = { teamId, userId: sessionData?.user.id };
 
     await fetch(`/api/getteamsfromuser`, {
@@ -108,7 +67,6 @@ const DashboardPage = ({ teams }: InferGetServerSidePropsType<typeof getServerSi
   };
 
   const createTeam = async (name: string) => {
-    console.log("on createTeam");
     const body = { name, userId: sessionData?.user.id };
 
     await fetch(`/api/createteam`, {
@@ -121,8 +79,6 @@ const DashboardPage = ({ teams }: InferGetServerSidePropsType<typeof getServerSi
         setSelectedTeamId(newTeam.id);
       });
   };
-
-  console.log({ teams, sessionData });
 
   return (
     <div className="min-h-screen bg-neutral-100">
