@@ -49,8 +49,8 @@ p {
   border-bth border-4
 }
 
-.radio:checked
-{
+.radio:checked {
   @apply
   bg-l1
+  animate-pulse
 }
