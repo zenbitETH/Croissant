@@ -62,7 +62,7 @@ export const Header = () => {
   );
 
   return (
-    <div className="sticky lg:static top-0 navbar bg-none min-h-0 flex-shrink-0 justify-between z-20 px-0 sm:px-2">
+    <div className="fixed top-0 navbar bg-none min-h-0 flex-shrink-0 justify-between z-20 px-0 sm:px-2">
       <div className="navbar-start w-auto lg:w-1/2">
         <div className="lg:hidden dropdown" ref={burgerMenuRef}>
           <label
@@ -84,11 +84,14 @@ export const Header = () => {
             </ul>
           )}
         </div>
-        <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6">
+        <Link href="/quizStation" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6">
           <div className="flex relative w-10 h-10">
             <Image alt="SE2 logo" className="cursor-pointer" fill src="/Wlogo.png" />
           </div>
           <div className="flex flex-col font-kum font bold text-xl">Croissant</div>
+        </Link>
+        <Link href="/dashboard">
+          <div className="homeBT">Dashboard</div>
         </Link>
       </div>
       <div className="navbar-end flex-grow mr-4">
