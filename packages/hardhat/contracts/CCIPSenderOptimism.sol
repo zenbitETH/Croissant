@@ -22,6 +22,8 @@ contract CCIPSender {
         LinkTokenInterface(link).approve(router, type(uint256).max);
     }
 
+    receive() external payable {}
+
     struct Quiz {
         string[] questions;
         // encoded and Hashed Answers

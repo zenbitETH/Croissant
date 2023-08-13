@@ -34,6 +34,8 @@ contract CCIPReceiverSepolia is CCIPReceiver {
     // mapping(address => bool) public goToAttest;
     mapping(address => bool) public isAdmin;
 
+    receive() external payable {}
+
     constructor(address router, uint256 _secret) CCIPReceiver(router) {
         isAdmin[msg.sender] = true;
         secret = _secret;
