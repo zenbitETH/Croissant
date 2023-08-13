@@ -7,11 +7,11 @@ import Verify3 from "@/components/Verify3";
 
 function getSteps() {
   return [
-    <b key="1">{`Onboarding Video`}</b>,
-    <b key="2">{`Q&A`}</b>,
-    <b key="3">{`Verify Answers`}</b>,
-    <b key="4">{`Verify WorldID`}</b>,
-    <b key="5">{`Get Croissant`}</b>,
+    <b key="1">{`1. Onboarding Video`}</b>,
+    <b key="2">{`2. Q&A`}</b>,
+    <b key="3">{`3. Verify Answers`}</b>,
+    <b key="4">{`4. Verify WorldID`}</b>,
+    <b key="5">{`5. Get Croissant`}</b>,
   ];
 }
 
