@@ -100,7 +100,7 @@ Hardhat deployment steps :
 [Quiz Implementation on BaseGoerli](https://goerli.basescan.org/address/0xCEBF52D371cCF3B7Bc019fD43A676B12F263D779#code)
 
 
-## BASE NODES PROPOSAL 
+## 🛠️ 🛠️ BASE NODES PROPOSAL 🛠️ 🛠️ 
 
 We also have come up with a proposal for 🛠️ Base Nodes : 
 
