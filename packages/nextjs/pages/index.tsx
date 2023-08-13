@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           Crosschain Attestations for web3 onboarding
         </div>
       </div>
-      <div className="homeBT fixed bottom-20 left-1/2 -translate-x-1/2">Connect</div>
+      {/* <div className="homeBT fixed bottom-20 left-1/2 -translate-x-1/2">Connect</div> */}
     </div>
   );
 };
