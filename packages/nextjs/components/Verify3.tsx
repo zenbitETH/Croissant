@@ -17,7 +17,7 @@ export default function Verify3() {
             <div className="text-l2">Schema ID in Optimism</div>
             <div>Schema ID in Sepolia</div>
           </div>
-          <div className="homeBT">Get Croissant</div>
+          <div className="homeBT mx-auto">Get Croissant</div>
         </div>
       </div>
     </div>
