@@ -7,11 +7,11 @@ import Verify3 from "@/components/Verify3";
 
 function getSteps() {
   return [
-    <b key="1">{`Enter Personal Details`}</b>,
-    <b key="2">{`Enter Education Details`}</b>,
-    <b key="3">{`Enter Address`}</b>,
-    <b key="3">{`Enter Address 44444`}</b>,
-    <b key="3">{`Enter Address 5555`}</b>,
+    <b key="1">{`Onboarding Video`}</b>,
+    <b key="2">{`Q&A`}</b>,
+    <b key="3">{`Verify Answers`}</b>,
+    <b key="4">{`Verify WorldID`}</b>,
+    <b key="5">{`Get Croissant`}</b>,
   ];
 }
 
@@ -50,14 +50,20 @@ export default function QuizStation() {
         <div key={index}>
           {activeStep === index ? (
             <>
-              <div>{label}</div>
+              <div className="fixed top-16 text-2xl font-kum fixed left-1/2 -translate-x-1/2">{label}</div>
               <div>{getStepContent(index)}</div>
               <div>
                 <>
-                  <button disabled={activeStep === 0} onClick={handleBack}>
+                  <button
+                    className="homeBT fixed left-5 top-1/2 -translate-y-1/2"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                  >
                     Back
                   </button>
-                  <button onClick={handleNext}>{activeStep === steps.length - 1 ? "Finish" : "Next"}</button>
+                  <button className="homeBT fixed right-5 top-1/2 -translate-y-1/2" onClick={handleNext}>
+                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                  </button>
                 </>
               </div>
             </>

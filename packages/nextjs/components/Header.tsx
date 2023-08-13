@@ -1,27 +1,28 @@
 import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 import { FaucetButton, RainbowKitCustomConnectButton } from "@/components/scaffold-eth";
 import { useOutsideClick } from "@/hooks/scaffold-eth";
-import { Bars3Icon, BugAntIcon, MagnifyingGlassIcon, SparklesIcon } from "@heroicons/react/24/outline";
 
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
-  const router = useRouter();
-  const isActive = router.pathname === href;
+//import { Bars3Icon, BugAntIcon, MagnifyingGlassIcon, SparklesIcon } from "@heroicons/react/24/outline";
 
-  return (
-    <Link
-      href={href}
-      passHref
-      className={`${
-        isActive ? "bg-secondary shadow-md" : ""
-      } hover:bg-secondary hover:shadow-md focus:bg-secondary py-1.5 px-3 text-sm rounded-full gap-2`}
-    >
-      {children}
-    </Link>
-  );
-};
+//const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+//  const router = useRouter();
+//  const isActive = router.pathname === href;
+//
+//  return (
+//    <Link
+//      href={href}
+//      passHref
+//      className={`${
+//        isActive ? "bg-secondary shadow-md" : ""
+//      } hover:bg-secondary hover:shadow-md py-1.5 px-3 text-sm rounded-full gap-2`}
+//    >
+//      {children}
+//    </Link>
+//  );
+//};
 
 /**
  * Site header
@@ -36,7 +37,7 @@ export const Header = () => {
 
   const navLinks = (
     <>
-      <li>
+      {/*<li>
         <NavLink href="/">Home</NavLink>
       </li>
       <li>
@@ -56,12 +57,12 @@ export const Header = () => {
           <MagnifyingGlassIcon className="h-4 w-4" />
           Block Explorer
         </NavLink>
-      </li>
+      </li>*/}
     </>
   );
 
   return (
-    <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-0 sm:px-2">
+    <div className="sticky lg:static top-0 navbar bg-none min-h-0 flex-shrink-0 justify-between z-20 px-0 sm:px-2">
       <div className="navbar-start w-auto lg:w-1/2">
         <div className="lg:hidden dropdown" ref={burgerMenuRef}>
           <label
@@ -70,9 +71,7 @@ export const Header = () => {
             onClick={() => {
               setIsDrawerOpen(prevIsOpenState => !prevIsOpenState);
             }}
-          >
-            <Bars3Icon className="h-1/2" />
-          </label>
+          ></label>
           {isDrawerOpen && (
             <ul
               tabIndex={0}

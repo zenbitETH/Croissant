@@ -32,7 +32,7 @@ const Tutorial: React.FC = () => {
   return (
     <div className="overflow-hidden text-center h-screen grid items-center  relative">
       {/* {activeSection.id === 1 && ( */}
-      <div className="md:mx-20 gap-3 pt-24 pb-36 font-bau h-full grid items-center px-3 mb-20">
+      <div className="md:mx-32 gap-3 pt-24 pb-36 font-bau h-full grid items-center px-3 mb-20">
         <iframe
           className="w-full h-full rounded-2xl"
           src="https://www.youtube.com/embed/Mwr3eJgp4_M"
