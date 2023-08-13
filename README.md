@@ -1,7 +1,7 @@
 # 🥐 Croissant
 Proof of concept of cross-chain attestations for web3 onboarding. [Developed at Superhack 2023](https://ethglobal.com/showcase/croissant-870b0)  
 
-![alt text](https://storage.googleapis.com/ethglobal-api-production/projects%2F870b0%2Fimages%2F4.png)
+![alt text](https://media.discordapp.net/attachments/1138818797395001417/1140315531929456750/4.png?width=1440&height=810)
 
 ## Project Description
 
