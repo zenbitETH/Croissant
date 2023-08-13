@@ -52,10 +52,6 @@ const DashboardPage = () => {
   return (
     <div className="min-h-screen pt-10 max-w-5xl mx-auto font-kan">
       <div className="mx-auto grid gap-3 px-4 pb-12 sm:px-6 lg:px-8  ">
-        <div className="border-2 rounded-dd p-5">
-          <div className="text-2xl pb-5"> Manage Team</div>
-          <div>Import TeamMembers from Armchair</div>
-        </div>
         <div className="border-2 rounded-dd p-5 grid gap-3">
           <div className="text-2xl pb-5"> Manage Quiz</div>
           <div className="p-3 rounded-ii">
@@ -82,15 +78,15 @@ const DashboardPage = () => {
             <div className="grid grid-cols-3 text-center">
               <div className="mx-auto">
                 <div className="text-l1 text-xl">Answer 1</div>
-                <input type="radio" name="radio-1" className="radio" checked />
+                <input type="radio" name="radio-1" className="radio" />
               </div>
               <div className="mx-auto">
                 <div className="text-l1 text-xl">Answer 2</div>
-                <input type="radio" name="radio-1" className="radio" checked />
+                <input type="radio" name="radio-1" className="radio" />
               </div>
               <div className="mx-auto">
                 <div className="text-l1 text-xl">Answer 3</div>
-                <input type="radio" name="radio-1" className="radio" checked />
+                <input type="radio" name="radio-1" className="radio" />
               </div>
             </div>
           </div>
@@ -107,15 +103,15 @@ const DashboardPage = () => {
             <div className="grid grid-cols-3 text-center">
               <div className="mx-auto">
                 <div className="text-l1 text-xl">Answer 1</div>
-                <input type="radio" name="radio-1" className="radio" checked />
+                <input type="checkbox" name="radio-1" className="radio" />
               </div>
               <div className="mx-auto">
                 <div className="text-l1 text-xl">Answer 2</div>
-                <input type="radio" name="radio-1" className="radio" checked />
+                <input type="checkbox" name="radio-1" className="radio" />
               </div>
               <div className="mx-auto">
                 <div className="text-l1 text-xl">Answer 3</div>
-                <input type="radio" name="radio-1" className="radio" checked />
+                <input type="checkbox" name="radio-1" className="radio" />
               </div>
             </div>
           </div>
@@ -132,15 +128,15 @@ const DashboardPage = () => {
             <div className="grid grid-cols-3 text-center">
               <div className="mx-auto">
                 <div className="text-l1 text-xl">Answer 1</div>
-                <input type="radio" name="radio-1" className="radio" checked />
+                <input type="checkbox" name="radio-1" className="radio" />
               </div>
               <div className="mx-auto">
                 <div className="text-l1 text-xl">Answer 2</div>
-                <input type="radio" name="radio-1" className="radio" checked />
+                <input type="checkbox" name="radio-1" className="radio" />
               </div>
               <div className="mx-auto">
                 <div className="text-l1 text-xl">Answer 3</div>
-                <input type="radio" name="radio-1" className="radio" checked />
+                <input type="checkbox" name="radio-1" className="radio" />
               </div>
             </div>
           </div>
