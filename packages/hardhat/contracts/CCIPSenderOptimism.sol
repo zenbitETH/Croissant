@@ -8,10 +8,19 @@ import {LinkTokenInterface} from "@chainlink/contracts/src/v0.8/interfaces/LinkT
 contract CCIPSender {
     error OutOfBounds();
 
-    address link;
-    address router;
+    address immutable link;
+    address immutable router;
     uint256 private secret;
     uint256 public quizId;
+
+    event MessageSent(bytes32 messageId);
+
+    constructor(address _link, address _router, uint256 _secret) {
+        secret = _secret;
+        link = _link;
+        router = _router;
+        LinkTokenInterface(link).approve(router, type(uint256).max);
+    }
 
     struct Quiz {
         string[] questions;
@@ -28,28 +37,30 @@ contract CCIPSender {
     mapping(address => User) public addressToUser;
     mapping(address => bool) public goToAttest;
 
-    constructor(address _link, address _router, uint256 _secret) {
-        secret = _secret;
-        link = _link;
-        router = _router;
-        LinkTokenInterface(link).approve(router, type(uint256).max);
-    }
-
     function toBytes(bytes32 data) public pure returns (bytes memory) {
         return bytes.concat(data);
     }
 
-    function send(address receiver, string memory _answers, uint64 destinationChainSelector) external {
-        bytes memory answers = toBytes(computeAnswers(_answers));
+    function send(address receiver, string memory _answers, uint64 destinationChainSelector)
+        external
+        returns (bytes32 messageId)
+    {
+        bytes32 answers = computeAnswers(_answers);
         Client.EVM2AnyMessage memory message = Client.EVM2AnyMessage({
             receiver: abi.encode(receiver),
-            data: answers,
+            data: abi.encode(answers),
             tokenAmounts: new Client.EVMTokenAmount[](0),
             extraArgs: "",
-            feeToken: link
+            feeToken: address(0)
         });
 
-        IRouterClient(router).ccipSend(destinationChainSelector, message);
+        uint256 fee = IRouterClient(router).getFee(destinationChainSelector, message);
+
+        messageId = IRouterClient(router).ccipSend{value: fee}(destinationChainSelector, message);
+
+        emit MessageSent(messageId);
+
+        // IRouterClient(router).ccipSend(destinationChainSelector, message);
     }
 
     function computeAnswers(string memory _answers) private view returns (bytes32) {
