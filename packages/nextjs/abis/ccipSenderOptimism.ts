@@ -1,0 +1,95 @@
+export const ccipSenderOptimismAbi = [
+  {
+    inputs: [
+      { internalType: "address", name: "_link", type: "address" },
+      { internalType: "address", name: "_router", type: "address" },
+      { internalType: "uint256", name: "_secret", type: "uint256" },
+    ],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  { inputs: [], name: "OutOfBounds", type: "error" },
+  {
+    anonymous: false,
+    inputs: [{ indexed: false, internalType: "bytes32", name: "messageId", type: "bytes32" }],
+    name: "MessageSent",
+    type: "event",
+  },
+  {
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "addressToUser",
+    outputs: [
+      { internalType: "string", name: "userAnswers", type: "string" },
+      { internalType: "bool", name: "isCorrect", type: "bool" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "string[]", name: "_questions", type: "string[]" },
+      { internalType: "string", name: "_answers", type: "string" },
+    ],
+    name: "createQuiz",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_quizId", type: "uint256" }],
+    name: "fetchQuestions",
+    outputs: [{ internalType: "string[]", name: "", type: "string[]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "goToAttest",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    name: "idToQuiz",
+    outputs: [{ internalType: "bytes32", name: "answers", type: "bytes32" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "quizId",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_quizId", type: "uint256" },
+      { internalType: "string", name: "_userAnswers", type: "string" },
+    ],
+    name: "registerUserAnswers",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "receiver", type: "address" },
+      { internalType: "string", name: "_answers", type: "string" },
+      { internalType: "uint64", name: "destinationChainSelector", type: "uint64" },
+    ],
+    name: "send",
+    outputs: [{ internalType: "bytes32", name: "messageId", type: "bytes32" }],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "bytes32", name: "data", type: "bytes32" }],
+    name: "toBytes",
+    outputs: [{ internalType: "bytes", name: "", type: "bytes" }],
+    stateMutability: "pure",
+    type: "function",
+  },
+  { stateMutability: "payable", type: "receive" },
+] as const;
