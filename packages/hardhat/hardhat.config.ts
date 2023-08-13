@@ -90,12 +90,27 @@ const config: HardhatUserConfig = {
       accounts: [deployerPrivateKey],
       verifyURL: "https://zksync2-mainnet-explorer.zksync.io/contract_verification",
     },
+    modeTestnet: {
+      url: "https://sepolia.mode.network",
+      chainId: 919,
+      accounts : [deployerPrivateKey],
+    }
   },
+
+  customChains: [
+    {
+      network: "modeTestnet",
+        url: "https://sepolia.mode.network",
+        chainId: 919
+      }
+  ], 
+
   verify: {
     etherscan: {
       apiKey: `${etherscanApiKey}`,
     },
   },
+
 };
 
 export default config;
