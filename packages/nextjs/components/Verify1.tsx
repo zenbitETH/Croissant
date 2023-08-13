@@ -26,7 +26,7 @@ export default function Verify1() {
               </div>
             </div>
           </div>
-          <div className="homeBT">Verify answers</div>
+          <div className="homeBT mx-auto">Verify answers</div>
         </div>
       </div>
     </div>

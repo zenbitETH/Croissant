@@ -22,7 +22,7 @@ p {
 .homeBT {
   @apply
   bg-l2 rounded-dd hover:bg-bth cursor-pointer
-  text-bt hover:text-l1 text-center w-fit mx-auto
+  text-bt hover:text-l1 text-center w-fit 
   px-5 py-2 font-kan text-xl md:text-2xl 
 }
 

@@ -15,9 +15,9 @@ export default function Verify3() {
           </div>
           <div className="text-2xl text-l1 font-kan bg-bt rounded-dd p-3 text-left">
             <div className="text-l2">Schema ID in Optimism</div>
-            <div>Schema ID in Base</div>
+            <div>Schema ID in Sepolia</div>
           </div>
-          <div className="homeBT">Get Croissant</div>
+          <div className="homeBT mx-auto">Get Croissant</div>
         </div>
       </div>
     </div>
