@@ -18,12 +18,9 @@ Once the admins set Croissant, members can take the tutorial, answer the quiz, v
 Croissant is built with the following web3 technologies and public goods:
 
 - [ScaffoldETH2](https://github.com/scaffold-eth/scaffold-eth-2) repo for the Dapp template
-- [M.Piedrafita's](https://github.com/m1guelpf/armchair) Armchair repo for the Team Dashboard template
-- Contracts deployed in [Optimism](https://www.optimism.io/) Goerli and [Sepolia](https://sepolia.dev/)
-- Onboarding attestation schema registered in [Ethereum Attestation Service](https://attest.sh/)
-- [WorldId](https://worldcoin.org/world-id) as Sybil-Defence solution
+- Contracts deployed in [Optimism Goerli](https://www.optimism.io/), [Sepolia](https://sepolia.dev/),[Base](https://base.org/) and [Mode](https://docs.mode.network/)
+- Onboarding attestation schemas registered in [Ethereum Attestation Service](https://attest.sh/)
 - [Chainlink](https://chain.link/cross-chain) CCIP for the crosschain interactions
-- [The Graph](https://thegraph.com/es/) for the contracts subgraph
 
 ## Contracts
 
@@ -33,6 +30,8 @@ This contract is a standard that we have integrated with Chainlink.
 1. [CCIPSenderOptimism](https://goerli-optimism.etherscan.io/address/0xd2D9De2c40D1A49f7247165284cea27a1BEAa272)
 2. [CCIPReceiverSepolia](https://sepolia.etherscan.io/address/0x8a60871E8E822BA8f66899Fb079990293e9C0CB5#code)
 3. [Chainlink CCIP transaction](https://ccip.chain.link/msg/0x9be2f2e094403fa1527e72cfaf651a1b3757890fb0bd0bdea3258ef7d7452ff3)
+4. [Quiz Implementation in Base Goerli](https://goerli.basescan.org/address/0xCEBF52D371cCF3B7Bc019fD43A676B12F263D779#code)
+5. [Quiz Implementation in Mode Sepolia](https://sepolia.explorer.mode.network/address/0xC075bf3F3ca75A2a655186a617B29532167f8ba0?tab=txs)
 
 ## Integration with Mode 
 
