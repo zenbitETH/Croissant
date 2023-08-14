@@ -47,7 +47,7 @@ export default function QuizStation() {
         <div key={index}>
           {activeStep === index ? (
             <>
-              <div className="fixed top-16 text-2xl font-kum fixed left-1/2 -translate-x-1/2">{label}</div>
+              <div className="fixed top-16 text-2xl font-kum left-1/2 -translate-x-1/2">{label}</div>
               <div>{getStepContent(index)}</div>
               <div>
                 <>

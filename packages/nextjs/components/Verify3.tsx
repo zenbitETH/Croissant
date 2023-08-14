@@ -1,8 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../public/logo.svg";
+// import { ccipReceiverSepoliaAbi } from "@/abis/ccipReceiverSepolia"; // TODO
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 
 export default function Verify3() {
+  const { config } = usePrepareContractWrite({
+    address: "0xcontract", // TODO
+    // abi: ccipReceiverSepoliaAbi, // TODO
+    // functionName: "getCroissant", // TODO
+    enabled: Boolean(false), // TODO
+  });
+
+  const { data, write } = useContractWrite(config);
+
+  const { isLoading, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
+
+  console.log({ isLoading, isSuccess });
+
   return (
     <div className="overflow-hidden text-center h-screen grid items-center  relative">
       <div className="grid gap-5 mx-auto">
@@ -10,7 +27,7 @@ export default function Verify3() {
           Your attestation is ready to be claimed!
         </div>
         <div className="bg-white p-10 rounded-dd grid gap-5">
-          <div className="text-l1 text-3xl font-kan text-l2">Virtual Onboarding</div>
+          <div className="text-l1 text-3xl font-kan">Virtual Onboarding</div>
           <div className="mx-auto">
             <Image src={logo} alt="Croissant Attestation" />
           </div>
@@ -23,7 +40,17 @@ export default function Verify3() {
               <div className="text-white">Chainlink CCID</div>
             </Link>
           </div>
-          <div className="homeBT mx-auto">Get Croissant</div>
+          <button disabled={!write || isLoading} onClick={() => write?.()} className="homeBT mx-auto">
+            {isLoading ? "Enjoy your Croissant!" : "Get Croissant"}
+          </button>
+          {isSuccess && (
+            <div>
+              Successfully adquired your Croissant!
+              {/* <div>
+                <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
+              </div> */}
+            </div>
+          )}
         </div>
       </div>
     </div>
