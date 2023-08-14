@@ -27,11 +27,13 @@ Croissant is built with the following web3 technologies and public goods:
 The main contract is the QuizImplementation that we have deployed on several blockchains: 
 This contract is a standard that we have integrated with Chainlink. 
 
-1. [CCIPSenderOptimism](https://goerli-optimism.etherscan.io/address/0xd2D9De2c40D1A49f7247165284cea27a1BEAa272)
-2. [CCIPReceiverSepolia](https://sepolia.etherscan.io/address/0x8a60871E8E822BA8f66899Fb079990293e9C0CB5#code)
-3. [Chainlink CCIP transaction](https://ccip.chain.link/msg/0x9be2f2e094403fa1527e72cfaf651a1b3757890fb0bd0bdea3258ef7d7452ff3)
-4. [Quiz Implementation in Base Goerli](https://goerli.basescan.org/address/0xCEBF52D371cCF3B7Bc019fD43A676B12F263D779#code)
-5. [Quiz Implementation in Mode Sepolia](https://sepolia.explorer.mode.network/address/0xC075bf3F3ca75A2a655186a617B29532167f8ba0?tab=txs)
+1. [Schema 188 in EAS OP-goerli](https://optimism-goerli-bedrock.easscan.org/schema/view/0x0d6ecbd5000b1713c21e28296f6ed8bfa8e0e5f5d8ee4b354276ba65c8b2c188)
+2. [Schema #574 in EAS Sepolia](https://sepolia.easscan.org/schema/view/0x0d6ecbd5000b1713c21e28296f6ed8bfa8e0e5f5d8ee4b354276ba65c8b2c188)
+3. [CCIPSenderOptimism](https://goerli-optimism.etherscan.io/address/0xd2D9De2c40D1A49f7247165284cea27a1BEAa272)
+4. [CCIPReceiverSepolia](https://sepolia.etherscan.io/address/0x8a60871E8E822BA8f66899Fb079990293e9C0CB5#code)
+5. [Chainlink CCIP transaction](https://ccip.chain.link/msg/0x9be2f2e094403fa1527e72cfaf651a1b3757890fb0bd0bdea3258ef7d7452ff3)
+6. [Quiz Implementation in Base Goerli](https://goerli.basescan.org/address/0xCEBF52D371cCF3B7Bc019fD43A676B12F263D779#code)
+7. [Quiz Implementation in Mode Sepolia](https://sepolia.explorer.mode.network/address/0xC075bf3F3ca75A2a655186a617B29532167f8ba0?tab=txs)
 
 ## Integration with Mode 
 
