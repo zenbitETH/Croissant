@@ -1,4 +1,27 @@
+import { ccipSenderOptimismAbi } from "@/abis/ccipSenderOptimism";
+import { useAppContext } from "@/contexts/AppContext";
+import { parseUnits } from "viem";
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
+
 export default function Quiz() {
+  const { workingQuizId } = useAppContext();
+
+  const { config } = usePrepareContractWrite({
+    address: process.env.NEXT_PUBLIC_CCI_SENDER_CONTRACT_ADDRESS as string,
+    abi: ccipSenderOptimismAbi,
+    functionName: "registerUserAnswers",
+    args: [parseUnits(workingQuizId, 9), "312"], // TODO: add the answers here, replace the "" as second parameter in args
+    enabled: Boolean(workingQuizId),
+  });
+
+  const { data, write } = useContractWrite(config);
+
+  const { isLoading, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
+
+  console.log({ isLoading, isSuccess });
+
   return (
     <div className="overflow-hidden text-center h-screen grid items-center  relative">
       <div className="grid gap-5 mx-auto">
@@ -53,6 +76,17 @@ export default function Quiz() {
             </span>
           </div>
         </div>
+        <button className="homeBT mx-auto" disabled={!write || isLoading} onClick={() => write?.()}>
+          {isLoading ? "Verifying" : "Verify answers"}
+        </button>
+        {isSuccess && (
+          <div>
+            Successfully verified!
+            {/* <div>
+                <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
+              </div> */}
+          </div>
+        )}
       </div>
     </div>
   );

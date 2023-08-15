@@ -6,9 +6,9 @@ import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from
 
 export default function Verify3() {
   const { config } = usePrepareContractWrite({
-    address: "0xcontract", // TODO
+    address: "0x5A633F1cc84B03F7588486CF2F386c102061E6e1", // TODO
     // abi: ccipReceiverSepoliaAbi, // TODO
-    // functionName: "getCroissant", // TODO
+    // functionName: "attest", // TODO
     enabled: Boolean(false), // TODO
   });
 

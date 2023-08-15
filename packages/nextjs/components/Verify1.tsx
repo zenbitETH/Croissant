@@ -1,27 +1,23 @@
-import { ccipReceiverSepoliaAbi } from "@/abis/ccipReceiverSepolia";
-import { useAppContext } from "@/contexts/AppContext";
-import { parseUnits } from "viem";
-import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
+import { useState } from "react";
+import { ccipSenderOptimismAbi } from "@/abis/ccipSenderOptimism";
+import { useContractRead } from "wagmi";
 
 export default function Verify1() {
-  const { workingQuizId } = useAppContext();
+  const [verifyNow, setVerifyNow] = useState(false);
+  // validate user quiz result in https://goerli-optimism.etherscan.io/address/0xd2D9De2c40D1A49f7247165284cea27a1BEAa272#readContract addressToUser function
 
-  const { config } = usePrepareContractWrite({
-    address: "0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2",
-    abi: ccipReceiverSepoliaAbi,
-    functionName: "registerUserAnswers",
-    args: [parseUnits(workingQuizId, 9), ""], // TODO: add the answers here, replace the "" as second parameter in args
-    enabled: Boolean(workingQuizId),
+  const { data: addressToUserData /*, isError: quizIdIsError */ } = useContractRead({
+    address: process.env.NEXT_PUBLIC_CCI_SENDER_CONTRACT_ADDRESS as string,
+    abi: ccipSenderOptimismAbi,
+    functionName: "addressToUser",
+    watch: false,
+    args: ["address to validate from the Quiz step result (The attest)"],
+    enabled: Boolean(verifyNow),
   });
 
-  const { data, write } = useContractWrite(config);
+  console.log({ addressToUserData });
 
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  });
-
-  console.log({ isLoading, isSuccess });
-
+  // after pressing the button and save the result
   return (
     <div className="overflow-hidden text-center h-screen grid items-center  relative">
       <div className="grid gap-5 mx-auto">
@@ -45,17 +41,11 @@ export default function Verify1() {
               <div className="grid items-center pl-3 font-kum text-5xl  text-l2 animate-pulse">Private Keys</div>
             </div>
           </div>
-          <button className="homeBT mx-auto" disabled={!write || isLoading} onClick={() => write?.()}>
-            Verify answers{isLoading ? "Verifying" : "Verify answers"}
+          <button className="homeBT mx-auto" disabled={!verifyNow} onClick={() => setVerifyNow(true)}>
+            {/* Verify answers{isLoading ? "Verifying" : "Verify answers"} */}
+            Verify
           </button>
-          {isSuccess && (
-            <div>
-              Successfully verified!
-              {/* <div>
-                <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
-              </div> */}
-            </div>
-          )}
+          {/* {isSuccess && <div>Successfully verified!</div>} */}
         </div>
       </div>
     </div>
