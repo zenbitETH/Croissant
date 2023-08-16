@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Quiz from "@/components/Quiz";
+import Quiz from "@/components/Quizcopy";
 import Tutorial from "@/components/Tutorial";
 import Verify1 from "@/components/Verify1";
 //import Verify2 from "@/components/Verify2";

@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import { ElementRef, HTMLAttributes, createContext, forwardRef, useContext, useId } from "react";
 import type { LabelProps, Root as LabelRoot } from "./Label";
-import Label from "@/components/dashboard/ui/Label";
+import Label from "@/components/ui/Label";
 import { cn } from "@/utils/scaffold-eth/dashboard";
 import { Slot, SlotProps } from "@radix-ui/react-slot";
 import {

@@ -4,7 +4,7 @@ interface IAppContext {
   selectedTeamId: string;
   setSelectedTeamId: (teamId: string) => void;
   questionsData: string[];
-  workingQuizId: string;
+  workingQuizId: bigint | null;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -12,7 +12,7 @@ export const AppContext = createContext<IAppContext>({
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setSelectedTeamId: () => {},
   questionsData: [],
-  workingQuizId: "",
+  workingQuizId: null,
 });
 
 AppContext.displayName = "CroissantAppContext";

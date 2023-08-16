@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, ElementRef, HTMLAttributes, forwardRef } from "react";
-import Dialog, { DialogContent } from "@/components/dashboard/ui/Dialog";
+import Dialog, { DialogContent } from "@/components/ui/Dialog";
 import { cn } from "@/utils/scaffold-eth/dashboard";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { DialogProps } from "@radix-ui/react-dialog";

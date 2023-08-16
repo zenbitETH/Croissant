@@ -1,7 +1,12 @@
-import { type ReactNode, useEffect, useState } from "react";
+import {
+  type ReactNode,
+  useEffect,
+  /* useEffect, */
+  useState,
+} from "react";
 import { AppContext } from "./AppContext";
 import { ccipReceiverSepoliaAbi } from "@/abis/ccipReceiverSepolia";
-import { formatUnits, parseUnits } from "viem";
+import { ccipSenderOptimismAbi } from "@/abis/ccipSenderOptimism";
 import { useContractRead } from "wagmi";
 
 interface IProps {
@@ -10,26 +15,33 @@ interface IProps {
 
 export function AppContextProvider({ children }: IProps) {
   const [selectedTeamId, setSelectedTeamId] = useState("");
-  const [workingQuizId, setWorkingQuizId] = useState("");
+  const [workingQuizId, setWorkingQuizId] = useState<bigint | null>(null);
 
-  const { data: quizIdData /*, isError: quizIdIsError */ } = useContractRead({
+  const { data: quizIdData /* isError: quizIdIsError */ } = useContractRead({
     address: process.env.NEXT_PUBLIC_CCI_SENDER_CONTRACT_ADDRESS as string,
     abi: ccipReceiverSepoliaAbi,
     functionName: "quizId",
     watch: false,
   });
 
-  const { data: fetchQuestionsData /* , isError: fetchQuestionsIsError */ } = useContractRead({
+  const {
+    data: fetchQuestionsData,
+    // isError: fetchQuestionsIsError,
+    // error: fetchQuestionsError,
+  } = useContractRead({
     address: process.env.NEXT_PUBLIC_CCI_SENDER_CONTRACT_ADDRESS as string,
-    abi: ccipReceiverSepoliaAbi,
+    abi: ccipSenderOptimismAbi,
     functionName: "fetchQuestions",
+    // args: [bytesToBigint(stringToBytes("1"))],
+    args: [1n], // TODO: Hardcoded 1n value to fetch working quiz for demo, change this to workingQuizId to use the last quizId from the contract
     watch: false,
-    args: [parseUnits("1", 9)],
   });
+
+  // console.log({ fetchQuestionsData, fetchQuestionsIsError, fetchQuestionsError });
 
   useEffect(() => {
     if (quizIdData) {
-      setWorkingQuizId(formatUnits(quizIdData, 9));
+      setWorkingQuizId(quizIdData);
     }
   }, [quizIdData]);
 

@@ -1,21 +1,24 @@
-import { useState } from "react";
 import { ccipSenderOptimismAbi } from "@/abis/ccipSenderOptimism";
-import { useContractRead } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
 
 export default function Verify1() {
-  const [verifyNow, setVerifyNow] = useState(false);
+  const { address } = useAccount();
+
   // validate user quiz result in https://goerli-optimism.etherscan.io/address/0xd2D9De2c40D1A49f7247165284cea27a1BEAa272#readContract addressToUser function
 
-  const { data: addressToUserData /*, isError: quizIdIsError */ } = useContractRead({
+  const {
+    data: addressToUserData,
+    isError: addressToUserIsError,
+    refetch: addressToUserRefetch,
+  } = useContractRead({
     address: process.env.NEXT_PUBLIC_CCI_SENDER_CONTRACT_ADDRESS as string,
     abi: ccipSenderOptimismAbi,
     functionName: "addressToUser",
-    watch: false,
-    args: ["address to validate from the Quiz step result (The attest)"],
-    enabled: Boolean(verifyNow),
+    args: [address as string],
+    enabled: false, // TODO: this is triggered in component mount
   });
 
-  console.log({ addressToUserData });
+  console.log({ addressToUserData, addressToUserIsError });
 
   // after pressing the button and save the result
   return (
@@ -41,7 +44,7 @@ export default function Verify1() {
               <div className="grid items-center pl-3 font-kum text-5xl  text-l2 animate-pulse">Private Keys</div>
             </div>
           </div>
-          <button className="homeBT mx-auto" disabled={!verifyNow} onClick={() => setVerifyNow(true)}>
+          <button className="homeBT mx-auto" disabled={!address} onClick={() => addressToUserRefetch}>
             {/* Verify answers{isLoading ? "Verifying" : "Verify answers"} */}
             Verify
           </button>

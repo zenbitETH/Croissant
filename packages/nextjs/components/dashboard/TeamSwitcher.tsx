@@ -1,6 +1,6 @@
 import { FC, useMemo, useState } from "react";
-import Avatar, { AvatarFallback, AvatarImage } from "@/components/dashboard/ui/Avatar";
-import Button from "@/components/dashboard/ui/Button";
+import Avatar, { AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import Button from "@/components/ui/Button";
 import Command, {
   CommandEmpty,
   CommandGroup,
@@ -8,7 +8,7 @@ import Command, {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/dashboard/ui/Command";
+} from "@/components/ui/Command";
 import Dialog, {
   DialogContent,
   DialogDescription,
@@ -16,10 +16,10 @@ import Dialog, {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/dashboard/ui/Dialog";
-import Input from "@/components/dashboard/ui/Input";
-import Label from "@/components/dashboard/ui/Label";
-import Popover, { PopoverContent, PopoverTrigger } from "@/components/dashboard/ui/Popover";
+} from "@/components/ui/Dialog";
+import Input from "@/components/ui/Input";
+import Label from "@/components/ui/Label";
+import Popover, { PopoverContent, PopoverTrigger } from "@/components/ui/Popover";
 import { cn } from "@/utils/scaffold-eth/dashboard";
 import { actionToast } from "@/utils/scaffold-eth/errors";
 import { CaretUpDown, Check, PlusCircle } from "@phosphor-icons/react";
